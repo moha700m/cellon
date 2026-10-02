@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --color-bg: #07090d;
+  --color-fg: #e7eef8;
+  --color-muted: #8d9bb0;
+  --color-ice: #5eb0ff;
+  --color-panel: #10141c;
+  --color-line: #243044;
+  --color-deep: #0b1018;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+}
+
+.horizon-glow {
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--color-ice) 16%, transparent),
+    transparent 72%
+  );
+  animation: horizon 7s ease-in-out infinite;
+}
+
+.screen-glass {
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--color-bg) 55%, transparent),
+    transparent 48%
+  );
+}
+
+.veil {
+  background: color-mix(in oklab, var(--color-bg) 84%, transparent);
+}
+
+@keyframes core-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes horizon {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core-light,
+  .horizon-glow {
+    animation: none !important;
+  }
+}
